@@ -1,9 +1,9 @@
 import java.util.ArrayList;
 
 public class User{
-	public int userX = 2;
-	public int userY = 2;
-	public int userMoney;
+	public int x = 2;
+	public int y = 2;
+	public int money;
 	public ArrayList<String> inventory = new ArrayList<String>();
 
 	//add item
@@ -12,7 +12,7 @@ public class User{
 	}//add item
 
 	//does have item
-	public boolean doesHave(String item){
+	public boolean has(String item){
 		for (int i = 0; i < inventory.size(); i++){
 			if (inventory.get(i).equalsIgnoreCase(item) == true){
 				return true;
@@ -31,5 +31,4 @@ public class User{
 		}
 		return false;
 	}//use item
-	
 }

@@ -8,16 +8,16 @@ public class Main {
 
 		String[][] test = {
       { "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0"},
-      { "0", ".", ".", ".", ".", ".", ".", "0", ".", ".", ".", ".", "0"},
-      { "0", ".", ".", ".", ".", ".", ".", "0", ".", ".", ".", ".", "0"},
-			{ "0", ".", ".", ".", ".", ".", ".", "0", ".", ".", ".", ".", "0"},
-			{ "0", ".", ".", ".", ".", ".", ".", "0", ".", ".", ".", ".", "0"},
-			{ "0", ".", ".", ".", ".", ".", ".", ".", ".", ".", ".", ".", "0"},
-			{ "0", ".", ".", ".", ".", ".", ".", "0", ".", ".", ".", ".", "0"},
-			{ "0", "0", "0", "0", ".", ".", ".", "0", "0", "0", ".", "0", "0"},
-			{ "0", ".", ".", "0", ".", ".", ".", "0", ".", ".", ".", ".", "0"},
-			{ "0", ".", ".", "0", ".", ".", ".", "0", ".", ".", ".", ".", "0"},
-			{ "0", ".", ".", ".", ".", ".", ".", "0", ".", ".", ".", ".", "0"},
+      { "0", " ", " ", " ", " ", " ", " ", "0", " ", " ", " ", " ", "0"},
+      { "0", " ", " ", " ", " ", " ", " ", "0", " ", " ", " ", " ", "0"},
+			{ "0", " ", " ", " ", " ", " ", " ", "0", " ", " ", " ", " ", "0"},
+			{ "0", " ", " ", " ", " ", " ", " ", "0", " ", " ", " ", " ", "0"},
+			{ "0", " ", " ", " ", " ", " ", " ", "|", " ", " ", " ", " ", "0"},
+			{ "0", " ", " ", " ", " ", " ", " ", "0", " ", " ", " ", " ", "0"},
+			{ "0", "0", "0", "0", " ", " ", " ", "0", "0", "0", " ", "0", "0"},
+			{ "0", " ", " ", "0", " ", " ", " ", "0", " ", " ", " ", " ", "0"},
+			{ "0", " ", " ", "0", " ", " ", " ", "0", " ", " ", " ", " ", "0"},
+			{ "0", " ", " ", " ", " ", " ", " ", "0", " ", " ", " ", " ", "0"},
 			{ "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0"}
     };
 
@@ -28,26 +28,37 @@ public class Main {
 		User User1 = new User();
 		Key Key1 = new Key();
 
-		
-
+		MapMan1.DefineItems();
 
 		//sets current map
 		String[][] currentMap = test;
 		//prints out map
 		MapMan1.PrintMap(currentMap);
+		
+		
 
 		//main gameplay loop
 		while(true){
 			System.out.println("Enter a command.");
 			String cmd = Scan.getStr();
 
-			//move command
-			if (cmd.equalsIgnoreCase("move") == true || cmd.equalsIgnoreCase("m") == true){
-				System.out.println("Enter a direction.");
-				cmd = Scan.getStr();
-				MapMan1.Move(cmd, currentMap);
-				MapMan1.PrintMap(currentMap); //fix test to be changable to other maps
-			}//Move command
+			if (cmd.equalsIgnoreCase("u") == true || cmd.equalsIgnoreCase("up") == true){
+				MapMan1.Move(1, currentMap);
+				MapMan1.PrintMap(currentMap);	
+
+			} else if (cmd.equalsIgnoreCase("d") == true || cmd.equalsIgnoreCase("down") == true){
+				MapMan1.Move(2, currentMap);
+				MapMan1.PrintMap(currentMap);
+
+			} else if (cmd.equalsIgnoreCase("l") == true || cmd.equalsIgnoreCase("left") == true){
+				MapMan1.Move(3, currentMap);
+			  MapMan1.PrintMap(currentMap);
+
+			} else if (cmd.equalsIgnoreCase("r") == true || cmd.equalsIgnoreCase("right") == true){
+				MapMan1.Move(4, currentMap);
+			  MapMan1.PrintMap(currentMap);
+			}
+		
 
 			//help
 			if (cmd.equalsIgnoreCase("help") == true){
