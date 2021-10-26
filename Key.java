@@ -3,4 +3,5 @@ public class Key{
 	int y;
 	boolean show;
 	String name;
+	String sprite;
 }

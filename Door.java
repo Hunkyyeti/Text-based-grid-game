@@ -4,5 +4,5 @@ public class Door{
 	boolean show;
 	boolean locked;
 	String key;
-	
+	String sprite;
 }

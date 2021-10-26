@@ -5,6 +5,7 @@ public class User{
 	public int y = 2;
 	public int money;
 	public ArrayList<String> inventory = new ArrayList<String>();
+	String sprite = "x ";
 
 	//add item
 	public void add(String item){

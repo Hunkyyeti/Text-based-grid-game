@@ -5,6 +5,7 @@ public class MapMan {
 	Key Key1 = new Key();
 	User User1 = new User();
 	Door Door1 = new Door();
+	Block Block1 = new Block();
 
 	//defines items
 	public void DefineItems(){
@@ -13,6 +14,8 @@ public class MapMan {
 		Key1.y = 1;
 		Key1.show = true;
 		Key1.name = "key";
+		Key1.sprite = "F ";
+		
 
 		//Defines door 1
 		Door1.x = 7;
@@ -20,29 +23,45 @@ public class MapMan {
 		Door1.show = true;
 		Door1.locked = true;
 		Door1.key = "key";
+		Door1.sprite = "| ";
+
+		//Defines block 1
+		Block1.x = 4;
+		Block1.y = 4;
+		Block1.show = true;
+		Block1.sprite = "[]";
+
+	}
+
+	//Print logic for objects
+	public void objectPrint(String[][] map, int i, int j){
+		//User1
+		if (i == User1.y && j == User1.x){
+			System.out.print(User1.sprite);
+		}
+		//Block1
+		else if (i == Block1.y && j == Block1.x && Block1.show == true){
+			System.out.print(Block1.sprite);
+		}
+		//Key1
+		else if (i == Key1.y && j == Key1.x && Key1.show == true){
+			System.out.print(Key1.sprite);
+		} 
+		//Door1
+		else if (i == Door1.y && j == Door1.x && Door1.show == true){
+			System.out.print(Door1.sprite);
+		}
+		//Print map
+		else{
+			System.out.print(map[i][j] + " ");
+		}
 	}
 
 	public void PrintMap(String[][] map) {
 		for (int i = 0; i < map.length; i++) {
-			
 			// Loops through and prints map
 			for (int j = 0; j < map[i].length; j++){
-				if (i == User1.y && j == User1.x){// copy this and replace the text to add other objects
-					System.out.print("x ");
-
-				} else if (i == Key1.y && j == Key1.x && Key1.show == true){
-					System.out.print("F ");
-
-				} else if (i == Door1.y && j == Door1.x && Door1.show == true && Door1.locked == true){
-					System.out.print("| ");
-
-				} else if (i == Door1.y && j == Door1.x && Door1.show == true && Door1.locked == false){
-					System.out.print("_ ");
-
-				} else{
-					System.out.print(map[i][j] + " ");
-				}
-
+				objectPrint(map, i, j);
 			} // for j
 			System.out.println();
 		} // for i
@@ -51,47 +70,39 @@ public class MapMan {
 
 	//Switch direction sense to int value
 
-	public void Move(int direct, String[][] map){
-		switch (direct){
+	public void Move(int direction, String[][] map){
+		switch (direction){
 		//up
 		case 1:
-			if (map[User1.y - 1][User1.x].equalsIgnoreCase(" ") == true){//Add another if statement with a differnt char to add another material
+			if (map[User1.y - 1][User1.x].equalsIgnoreCase(" ") == true){
 				User1.y--;
 			}
-			if (checkDirection(direct, User1.x, User1.y, Door1.x, Door1.y) == true && User1.has(Door1.key) == true){
-				Door1.locked = false;
-				User1.y--;
-			}
+			doorOpen(direction);
+			pushBlock(direction, map);
 			break;
 		//down
 		case 2:
 			if (map[User1.y + 1][User1.x].equalsIgnoreCase(" ") == true){
 				User1.y++;
 			}
-			if (checkDirection(direct, User1.x, User1.y, Door1.x, Door1.y) == true && User1.has(Door1.key) == true){
-				Door1.locked = false;
-				User1.y++;
-			}
+			doorOpen(direction);
+			pushBlock(direction, map);
 			break;
 		//left
 		case 3:
 			if (map[User1.y][User1.x - 1].equalsIgnoreCase(" ") == true){
 				User1.x--;
 			}
-			if (checkDirection(direct, User1.x, User1.y, Door1.x, Door1.y) == true && User1.has(Door1.key) == true){
-				Door1.locked = false;
-				User1.x--;
-			}
+			doorOpen(direction);
+			pushBlock(direction, map);
 			break;
 		//right
 		case 4:
 			if (map[User1.y][User1.x + 1].equalsIgnoreCase(" ")){
 				User1.x++;
 			}
-			if (checkDirection(direct, User1.x, User1.y, Door1.x, Door1.y) == true && User1.has(Door1.key) == true){
-				Door1.locked = false;
-				User1.x++;
-			}
+			doorOpen(direction);
+			pushBlock(direction, map);
 			break;
 		}
 
@@ -166,7 +177,35 @@ public class MapMan {
 	public void doorOpen(int direction){
 		if (checkDirection(direction, User1.x, User1.y, Door1.x, Door1.y) == true && User1.has(Door1.key) == true){
 			Door1.locked = false;
+			Door1.sprite = "_ ";
 			forceMove(direction);
+		}
+	}
+
+	public void pushBlock(int direction, String[][] map){
+		if (ifOn(User1.x, User1.y, Block1.x, Block1.y) == true){
+			switch(direction){
+			case(1):
+				if (map[Block1.y - 1][Block1.x].equalsIgnoreCase(" ") == true){
+					Block1.y--;
+				}
+				break;
+			case(2):
+				if (map[Block1.y + 1][Block1.x].equalsIgnoreCase(" ") == true){
+					Block1.y++;
+				}
+				break;
+			case(3):
+				if (map[Block1.y][Block1.x - 1].equalsIgnoreCase(" ") == true){
+					Block1.x--;
+				}
+				break;
+			case(4):
+				if(map[Block1.y][Block1.x + 1].equalsIgnoreCase(" ") == true){
+					Block1.x++;
+				}
+				break;
+			}
 		}
 	}
 }// MapMan
