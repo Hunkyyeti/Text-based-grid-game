@@ -5,7 +5,6 @@ public class MapMan {
 	Key Key1 = new Key();
 	User User1 = new User();
 	Door Door1 = new Door();
-	Block Block1 = new Block();
 
 	//defines items
 	public void DefineItems(){
@@ -24,13 +23,6 @@ public class MapMan {
 		Door1.locked = true;
 		Door1.key = "key";
 		Door1.sprite = "| ";
-
-		//Defines block 1
-		Block1.x = 4;
-		Block1.y = 4;
-		Block1.show = true;
-		Block1.sprite = "[]";
-
 	}
 
 	//Print logic for objects
@@ -38,10 +30,6 @@ public class MapMan {
 		//User1
 		if (i == User1.y && j == User1.x){
 			System.out.print(User1.sprite);
-		}
-		//Block1
-		else if (i == Block1.y && j == Block1.x && Block1.show == true){
-			System.out.print(Block1.sprite);
 		}
 		//Key1
 		else if (i == Key1.y && j == Key1.x && Key1.show == true){
@@ -78,7 +66,6 @@ public class MapMan {
 				User1.y--;
 			}
 			doorOpen(direction);
-			pushBlock(direction, map);
 			break;
 		//down
 		case 2:
@@ -86,7 +73,6 @@ public class MapMan {
 				User1.y++;
 			}
 			doorOpen(direction);
-			pushBlock(direction, map);
 			break;
 		//left
 		case 3:
@@ -94,7 +80,6 @@ public class MapMan {
 				User1.x--;
 			}
 			doorOpen(direction);
-			pushBlock(direction, map);
 			break;
 		//right
 		case 4:
@@ -102,7 +87,6 @@ public class MapMan {
 				User1.x++;
 			}
 			doorOpen(direction);
-			pushBlock(direction, map);
 			break;
 		}
 
@@ -179,33 +163,6 @@ public class MapMan {
 			Door1.locked = false;
 			Door1.sprite = "_ ";
 			forceMove(direction);
-		}
-	}
-
-	public void pushBlock(int direction, String[][] map){
-		if (ifOn(User1.x, User1.y, Block1.x, Block1.y) == true){
-			switch(direction){
-			case(1):
-				if (map[Block1.y - 1][Block1.x].equalsIgnoreCase(" ") == true){
-					Block1.y--;
-				}
-				break;
-			case(2):
-				if (map[Block1.y + 1][Block1.x].equalsIgnoreCase(" ") == true){
-					Block1.y++;
-				}
-				break;
-			case(3):
-				if (map[Block1.y][Block1.x - 1].equalsIgnoreCase(" ") == true){
-					Block1.x--;
-				}
-				break;
-			case(4):
-				if(map[Block1.y][Block1.x + 1].equalsIgnoreCase(" ") == true){
-					Block1.x++;
-				}
-				break;
-			}
 		}
 	}
 }// MapMan
