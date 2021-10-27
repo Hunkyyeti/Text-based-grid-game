@@ -15,8 +15,8 @@ public class Main {
 			{ "0", " ", " ", " ", " ", " ", " ", "0", " ", " ", " ", " ", "0"},
 			{ "0", " ", " ", " ", " ", " ", " ", "0", " ", " ", " ", " ", "0"},
 			{ "0", "0", "0", "0", " ", " ", " ", "0", "0", "0", " ", "0", "0"},
-			{ "0", " ", " ", "0", " ", " ", " ", "0", " ", " ", " ", " ", "0"},
-			{ "0", " ", " ", "0", " ", " ", " ", "0", " ", " ", " ", " ", "0"},
+			{ "0", " ", " ", " ", " ", " ", " ", "0", " ", " ", " ", " ", "0"},
+			{ "0", " ", " ", " ", " ", " ", " ", "0", " ", " ", " ", " ", "0"},
 			{ "0", " ", " ", " ", " ", " ", " ", "0", " ", " ", " ", " ", "0"},
 			{ "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0"}
     };
@@ -42,19 +42,19 @@ public class Main {
 			System.out.println("Enter a command.");
 			String cmd = Scan.getStr();
 
-			if (cmd.equalsIgnoreCase("u") == true || cmd.equalsIgnoreCase("up") == true){
+			if (cmd.equalsIgnoreCase("w") == true || cmd.equalsIgnoreCase("up") == true){
 				MapMan1.Move(1, currentMap);
 				MapMan1.PrintMap(currentMap);	
 
-			} else if (cmd.equalsIgnoreCase("d") == true || cmd.equalsIgnoreCase("down") == true){
+			} else if (cmd.equalsIgnoreCase("s") == true || cmd.equalsIgnoreCase("down") == true){
 				MapMan1.Move(2, currentMap);
 				MapMan1.PrintMap(currentMap);
 
-			} else if (cmd.equalsIgnoreCase("l") == true || cmd.equalsIgnoreCase("left") == true){
+			} else if (cmd.equalsIgnoreCase("a") == true || cmd.equalsIgnoreCase("left") == true){
 				MapMan1.Move(3, currentMap);
 			  MapMan1.PrintMap(currentMap);
 
-			} else if (cmd.equalsIgnoreCase("r") == true || cmd.equalsIgnoreCase("right") == true){
+			} else if (cmd.equalsIgnoreCase("d") == true || cmd.equalsIgnoreCase("right") == true){
 				MapMan1.Move(4, currentMap);
 			  MapMan1.PrintMap(currentMap);
 			}
@@ -76,7 +76,7 @@ public class Main {
 					MapMan1.PrintInv();
 				}
 
-				//use item Rework this to run with new system
+				//use item (Rework this to run with new system
 				if(cmd.equalsIgnoreCase("use") == true){
 					System.out.println("Enter an item to use");
 					cmd = Scan.getStr();

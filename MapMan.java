@@ -78,7 +78,7 @@ public class MapMan {
 				User1.y--;
 			}
 			doorOpen(direction);
-			pushBlock(direction, map);
+			pushBlock1(direction, map);
 			break;
 		//down
 		case 2:
@@ -86,7 +86,7 @@ public class MapMan {
 				User1.y++;
 			}
 			doorOpen(direction);
-			pushBlock(direction, map);
+			pushBlock1(direction, map);
 			break;
 		//left
 		case 3:
@@ -94,7 +94,7 @@ public class MapMan {
 				User1.x--;
 			}
 			doorOpen(direction);
-			pushBlock(direction, map);
+			pushBlock1(direction, map);
 			break;
 		//right
 		case 4:
@@ -102,7 +102,7 @@ public class MapMan {
 				User1.x++;
 			}
 			doorOpen(direction);
-			pushBlock(direction, map);
+			pushBlock1(direction, map);
 			break;
 		}
 
@@ -111,9 +111,6 @@ public class MapMan {
 			Key1.show = false;
 			User1.add(Key1.name);
 		}
-
-		System.out.println(User1.x + "," + User1.y);
-	
 	}// Movement controler
 
 	public void PrintInv(){
@@ -182,30 +179,41 @@ public class MapMan {
 		}
 	}
 
-	public void pushBlock(int direction, String[][] map){
+
+	public void pushBlock1(int direction, String[][] map){
 		if (ifOn(User1.x, User1.y, Block1.x, Block1.y) == true){
 			switch(direction){
 			case(1):
 				if (map[Block1.y - 1][Block1.x].equalsIgnoreCase(" ") == true){
 					Block1.y--;
+				}else if (map[Block1.y - 1][Block1.x].equalsIgnoreCase("0") == true){
+					User1.y++;
 				}
 				break;
 			case(2):
 				if (map[Block1.y + 1][Block1.x].equalsIgnoreCase(" ") == true){
 					Block1.y++;
+				}else if (map[Block1.y + 1][Block1.x].equalsIgnoreCase("0") == true){
+					User1.y--;
 				}
 				break;
 			case(3):
 				if (map[Block1.y][Block1.x - 1].equalsIgnoreCase(" ") == true){
 					Block1.x--;
+				}else if (map[Block1.y][Block1.x - 1].equalsIgnoreCase("0") == true){
+					User1.x++;
 				}
 				break;
 			case(4):
 				if(map[Block1.y][Block1.x + 1].equalsIgnoreCase(" ") == true){
 					Block1.x++;
+				}else if(map[Block1.y][Block1.x + 1].equalsIgnoreCase("0") == true){
+					User1.x--;
 				}
 				break;
 			}
 		}
 	}
+
+	
 }// MapMan
