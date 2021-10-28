@@ -16,7 +16,6 @@ public class MapMan {
 		Key1.name = "key";
 		Key1.sprite = "F ";
 		
-
 		//Defines door 1
 		Door1.x = 7;
 		Door1.y = 5;
@@ -33,27 +32,30 @@ public class MapMan {
 
 	}
 
+	StringBuilder line = new StringBuilder();
+	StringBuilder full = new StringBuilder();
+
 	//Print logic for objects
 	public void objectPrint(String[][] map, int i, int j){
 		//User1
 		if (i == User1.y && j == User1.x){
-			System.out.print(User1.sprite);
+			line.append(User1.sprite);
 		}
 		//Block1
 		else if (i == Block1.y && j == Block1.x && Block1.show == true){
-			System.out.print(Block1.sprite);
+			line.append(Block1.sprite);
 		}
 		//Key1
 		else if (i == Key1.y && j == Key1.x && Key1.show == true){
-			System.out.print(Key1.sprite);
+			line.append(Key1.sprite);
 		} 
 		//Door1
 		else if (i == Door1.y && j == Door1.x && Door1.show == true){
-			System.out.print(Door1.sprite);
+			line.append(Door1.sprite);
 		}
 		//Print map
 		else{
-			System.out.print(map[i][j] + " ");
+			line.append(map[i][j] + " ");
 		}
 	}
 
@@ -63,8 +65,11 @@ public class MapMan {
 			for (int j = 0; j < map[i].length; j++){
 				objectPrint(map, i, j);
 			} // for j
-			System.out.println();
+			full.append("\n" + line.toString());
+			line.delete(0, line.length());
 		} // for i
+		System.out.println(full.toString());
+		full.delete(0, full.length());
 	}// World printer
 
 
@@ -179,7 +184,7 @@ public class MapMan {
 		}
 	}
 
-
+	//Block controler
 	public void pushBlock1(int direction, String[][] map){
 		if (ifOn(User1.x, User1.y, Block1.x, Block1.y) == true){
 			switch(direction){
@@ -214,6 +219,4 @@ public class MapMan {
 			}
 		}
 	}
-
-	
 }// MapMan
